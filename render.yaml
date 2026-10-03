@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: a-chto-esli
+    runtime: node
+    plan: free
+    branch: main
+    buildCommand: npm ci --include=dev --no-audit --no-fund && npm run build
+    startCommand: npm run start -- --port $PORT
+    healthCheckPath: /
+    autoDeploy: false
+    envVars:
+      - key: NODE_VERSION
+        value: 24.19.0
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_TELEMETRY_DISABLED
+        value: "1"
